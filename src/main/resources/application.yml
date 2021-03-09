@@ -1,0 +1,22 @@
+display:
+  mach: 3
+  unit:
+    name: "mph"
+    factor: 2.23694
+quarkus:
+  datasource:
+    db-kind: h2
+    jdbc:
+      url: jdbc:h2:mem:default
+  hibernate-orm:
+    dialect: org.hibernate.dialect.H2Dialect
+    database:
+      generation: drop-and-create
+    packages: org.axonframework.eventsourcing.eventstore.jpa
+  index-dependency:
+    axon-eventsourcing:
+      group-id: org.axonframework
+      artifact-id: axon-eventsourcing
+    axon-messaging:
+      group-id: org.axonframework
+      artifact-id: axon-messaging
