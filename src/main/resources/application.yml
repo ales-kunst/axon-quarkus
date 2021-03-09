@@ -1,8 +1,3 @@
-display:
-  mach: 3
-  unit:
-    name: "mph"
-    factor: 2.23694
 quarkus:
   datasource:
     db-kind: h2
