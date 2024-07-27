@@ -1,13 +1,20 @@
 quarkus:
   datasource:
-    db-kind: h2
-    jdbc:
-      url: jdbc:h2:mem:default
+    axon:
+      db-kind: h2
+      jdbc:
+        url: jdbc:h2:mem:default
   hibernate-orm:
-    dialect: org.hibernate.dialect.H2Dialect
-    database:
-      generation: drop-and-create
-    packages: org.axonframework.eventsourcing.eventstore.jpa
+    axon:
+      dialect: org.hibernate.dialect.H2Dialect
+      database:
+        generation: drop-and-create
+      datasource: axon
+      packages: > 
+        org.axonframework.eventsourcing.eventstore.jpa, 
+        org.axonframework.eventhandling, 
+        org.axonframework.eventhandling.deadletter.jpa, 
+        org.axonframework.eventsourcing.eventstore
   index-dependency:
     axon-eventsourcing:
       group-id: org.axonframework

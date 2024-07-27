@@ -1,6 +1,12 @@
 package io.github.frezelth;
 
 import io.github.frezelth.model.commandhandler.TestAggregate;
+import io.quarkus.hibernate.orm.PersistenceUnit;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.config.AggregateConfigurer;
@@ -10,21 +16,18 @@ import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventsourcing.EventSourcingRepository;
 import org.axonframework.serialization.json.JacksonSerializer;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import javax.persistence.EntityManager;
-
 @ApplicationScoped
 public class AxonConfiguration {
 
     private Configuration configuration;
 
-    private final EntityManager entityManager;
+    @Inject
+    @PersistenceUnit("axon")
+    private EntityManager entityManager;
 
-    public AxonConfiguration(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    // public AxonConfiguration(EntityManager entityManager) {
+    //     this.entityManager = entityManager;
+    // }
 
     @PostConstruct
     public void configureAxon(){
